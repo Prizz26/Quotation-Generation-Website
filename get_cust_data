@@ -1,0 +1,33 @@
+        public class get_cust_data
+        {
+            public string json_type;
+            public string cust_name;
+            public string phone_no;
+            public string mail_id;
+            public string gst_no;
+            public string pan_no;
+            public string address;
+            public string district;
+            public string pin_code;
+            public string state;
+        }
+
+        public class response_data
+        {
+            public string json_status;
+            public string error_msg;
+            public List<object> data;
+        }
+
+
+case "Create_Cust":
+    {
+        string insertQuery = "INSERT INTO [Data_Master].[dbo].[Customer_Master](cust_name, phone_no, mail_id, gst_no, pan_no, address, district, pin_code, state) VALUES ('" + jsonOn.cust_name.ToString().Trim() + "','" + jsonOn.phone_no.ToString().Trim() + "','" + jsonOn.mail_id.ToString().Trim() + "','" + jsonOn.gst_no.ToString().Trim() + "','" + jsonOn.pan_no.ToString().Trim() + "', '" + jsonOn.address.ToString().Trim() + "','" + jsonOn.district.ToString().Trim() + "','" + jsonOn.pin_code.ToString().Trim() + "','" + jsonOn.state.ToString().Trim() + "')";
+
+        sql_cmd = new SqlCommand(insertQuery, sql_con);
+        sql_cmd.ExecuteNonQuery();
+        sql_con.Close();
+        jsonout.json_status = "0";
+        jsonout.error_msg = "Good";
+        break;
+    }
